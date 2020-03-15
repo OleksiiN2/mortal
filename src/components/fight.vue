@@ -19,14 +19,13 @@
    
     <div class="dragons">
       <div class="dragon" :class="{clicked: isClickedQ}"><font-awesome-icon :icon="['fas', 'dragon']" size="3x" /></div>
-    <div class="dragon" :class="{clicked: isClickedW}"><font-awesome-icon :icon="['fas', 'dragon']" size="3x" /></div>
-    <div class="dragon" :class="{clicked: isClickedE}"><font-awesome-icon :icon="['fas', 'dragon']" size="3x" /></div>
-    <div class="dragon" :class="{clicked: isClickedR}"><font-awesome-icon :icon="['fas', 'dragon']" size="3x" /></div>
-    <div class="dragon" :class="{clicked: isClickedT}"><font-awesome-icon :icon="['fas', 'dragon']" size="3x" /></div>
-    <div class="dragon" :class="{clicked: isClickedY}"><font-awesome-icon :icon="['fas', 'dragon']" size="3x" /></div>
+      <div class="dragon" :class="{clicked: isClickedW}"><font-awesome-icon :icon="['fas', 'dragon']" size="3x" /></div>
+      <div class="dragon" :class="{clicked: isClickedE}"><font-awesome-icon :icon="['fas', 'dragon']" size="3x" /></div>
+      <div class="dragon" :class="{clicked: isClickedR}"><font-awesome-icon :icon="['fas', 'dragon']" size="3x" /></div>
+      <div class="dragon" :class="{clicked: isClickedT}"><font-awesome-icon :icon="['fas', 'dragon']" size="3x" /></div>
+      <div class="dragon" :class="{clicked: isClickedY}"><font-awesome-icon :icon="['fas', 'dragon']" size="3x" /></div>
     </div>
     
-
   </div>
 </template>
 
@@ -50,20 +49,18 @@ export default {
     player2(){
       return this.$store.state.player2;
     }
-    
   },
-  
   mounted() {
     
     setTimeout(() => {
-      this.$store.commit('player1',"");
-      this.$store.commit('player2',"");
-      this.$router.push(`/`);//.catch(() => {});
+      //go back after 10sec
+      this.$store.commit('player1',{});
+      this.$store.commit('player2',{});
+      this.$router.push(`/`).catch(() => {});
     }, 10000)
 
      window.addEventListener("keydown", (e) => {
-     //console.log(e.keyCode);
-      //e.preventDefault();
+      
       //Q-81  W-87  E-69  R-82  T-84  Y-89
       if(e.keyCode == "81"){  
         this.isClickedQ = !this.isClickedQ;
@@ -78,8 +75,6 @@ export default {
       } else if(e.keyCode == "89") {
         this.isClickedY = !this.isClickedY;
       }
-
-      
     });
   }
 };
@@ -88,174 +83,67 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-.title,
-.player1,
-.player2 {
-  color: white;
-  font-style:oblique;
-  font-weight: normal;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-}
-.battleText{
-  color: rgb(70, 64, 64);
-  font-size: 5rem;
-  text-shadow: -3px 0 black, 0 3px black, 1px 0 black, 0 -1px black;
-  font-weight:bold;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  margin: 5px auto;
-}
+  .title,
+  .player1,
+  .player2 {
+    color: white;
+    font-style:oblique;
+    font-weight: normal;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  }
+  .battleText{
+    color: rgb(70, 64, 64);
+    font-size: 5rem;
+    text-shadow: -3px 0 black, 0 3px black, 1px 0 black, 0 -1px black;
+    font-weight:bold;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    margin: 5px auto;
+  }
 
-.container-inner {
-  width: 70%;
-  margin: 0 auto;
-  height: 700px;
-  /* background: grey; */
-  
-  display: grid;
-  grid-template-columns: 40% 20% 40%;
-  grid-auto-rows: auto;
-}
-.heroes {
-  /* display: grid;
-        grid-template-columns: repeat(5,1fr);
-         grid-auto-rows: auto;
-        grid-column-gap:0px;   */
-  padding: 40px 10px;
+  .container-inner {
+    width: 70%;
+    margin: 0 auto;
+    height: 700px;
+    display: grid;
+    grid-template-columns: 40% 20% 40%;
+    grid-auto-rows: auto;
+  }
 
-  margin: 20px;
+  #hero1,
+  #hero2 {
+    height: 600px;
+    width: 100%;
+    margin-top: 50px;
+  }
+  #hero1 img,
+  #hero2 img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+  }
+  #versus img {
+    max-width: 50%;
+    max-height: 50%;
+    object-fit: contain;
+    margin-top: 200px;
+  }
+  .player1 {
+    color: green;
+  }
+  .player2 {
+    color: purple;
+  }
 
-  display: flex;
-  flex-flow: row wrap;
-
-  justify-content: center;
-}
-.hero {
-  max-width: max-content;
-  max-height: max-content;
-  height: 150px;
-  position: relative;
-}
-.icon {
-  box-sizing: border-box;
-  width: 150px;
-  height: 150px;
-  padding: 0 0;
-  margin: 0 auto;
-
-  border: 1px solid #34572a;
-  object-fit: fill;
-}
-
-.disp{
-  display:none;
-}
-.selected1 {
-  border: 10px solid green;
-}
-.selected1Div{
-  display: block;
-  color: white;
-  font-style: italic;
-  font-size: 3rem;
-  font-weight: normal;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  position: absolute;
-  bottom: 50px;
-  left: 100px;
-  
-}
-.selected1Div:after{
-  content:"1";
-}
-
-
-
-.selected2 {
-  border: 10px solid purple;
-  
-}
-.selected2Div{
-  display: block;
-  color: white;
-  font-style: italic;
-  font-size: 3rem;
-  font-weight: normal;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  position: absolute;
-  bottom: 50px;
-  left: 100px;
-}
-.selected2Div:after{
-  content:"2";
-  
-}
-.selectedBoth {
-  border-top: 10px solid green;
-  border-left: 10px solid green;
-  border-bottom: 10px solid purple;
-  border-right: 10px solid purple;
-  
-}
-.selectedBothDiv{
-  display: block;
-  color: white;
-  font-style: italic;
-  font-size: 3rem;
-  font-weight: normal;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  position: absolute;
-  bottom: 50px;
-  left: 60px;
-}
-.selectedBothDiv:after{
-  content:"1/2";
-  
-}
-
-
-#hero1,
-#hero2 {
-  height: 600px;
-  width: 100%;
-  margin-top: 50px;
-}
-#hero1 img,
-#hero2 img {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
-}
-#versus img {
-  max-width: 50%;
-  max-height: 50%;
-  object-fit: contain;
-  margin-top: 200px;
-}
-.player1 {
-  color: green;
-}
-.player2 {
-  color: purple;
-}
-.hide {
-  display: none;
-}
-.red {
-  color:orange;
-  font-size: 3rem;
-
-}
-.dragon{
-  display: inline;
-  color:rgb(70, 64, 64);
-  margin: 0px 10px;
-}
-.clicked{
-  color:rgb(155, 49, 49);
-}
-.dragons{
-  margin-bottom: 60px;
-}
-
+  .dragon{
+    display: inline;
+    color:rgb(70, 64, 64);
+    margin: 0px 10px;
+  }
+  .dragons{
+    margin-bottom: 60px;
+  }
+  .clicked{
+    color:rgb(155, 49, 49);
+  }
 
 </style>

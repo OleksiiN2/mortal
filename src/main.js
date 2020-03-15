@@ -6,12 +6,10 @@ import Routes from './routes'
 
 //font-awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faRegistered,faDragon } from '@fortawesome/free-solid-svg-icons'
-import { faQuora,faWeebly,faEtsy,faTumblr,faYahoo } from '@fortawesome/free-brands-svg-icons'
+import { faDragon } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-//library.add(faUserSecret)
-library.add(faRegistered,faQuora,faWeebly,faEtsy,faTumblr,faYahoo,faDragon)
+library.add(faDragon)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 //end font-awesome
@@ -44,6 +42,6 @@ const store = new Vuex.Store({
 new Vue({
   render: h => h(App),
   router: router,
-  store
+  store: store
 
 }).$mount('#app')
