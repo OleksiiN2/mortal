@@ -158,7 +158,7 @@ export default {
         this.isRed = true;  
       } else if (this.player1.id && this.player2.id){
         //goto 2nd screen
-        this.$router.push(`/fight`).catch(() => {});
+        this.$router.push(`/mortalcombat/fight`).catch(() => {});
       }
     },
     btnPress(){

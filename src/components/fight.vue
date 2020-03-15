@@ -56,7 +56,7 @@ export default {
       //go back after 10sec
       this.$store.commit('player1',{});
       this.$store.commit('player2',{});
-      this.$router.push(`/`).catch(() => {});
+      this.$router.push(`*`).catch(() => {});
     }, 10000)
 
      window.addEventListener("keydown", (e) => {
